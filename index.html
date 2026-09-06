@@ -18,62 +18,109 @@
 
 body {
     font-family: 'DM Sans', sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%, #f8dff0 0, transparent 25%),
-        radial-gradient(circle at 90% 20%, #ddd8ff 0, transparent 25%),
-        linear-gradient(135deg, #fff9fc, #f9f5ff);
-    color: #493b4a;
+    color: #514252;
     overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 10% 10%, rgba(246, 210, 239, .8), transparent 25%),
+        radial-gradient(circle at 90% 15%, rgba(219, 212, 255, .8), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(250, 224, 241, .7), transparent 25%),
+        linear-gradient(135deg, #fffafd, #f8f5ff);
 }
 
-/* floating decorations */
+/* =========================
+   FLOATING DECORATIONS
+========================= */
+
 .decor {
     position: fixed;
     pointer-events: none;
-    z-index: -1;
-    opacity: .5;
-    animation: float 5s ease-in-out infinite;
+    z-index: 0;
+    opacity: .55;
+    animation: floating 5s ease-in-out infinite;
 }
 
-.decor.one {
+.decor1 {
     top: 18%;
     left: 4%;
     font-size: 28px;
 }
 
-.decor.two {
-    top: 65%;
+.decor2 {
+    top: 62%;
     right: 5%;
     font-size: 25px;
     animation-delay: 1s;
 }
 
-.decor.three {
+.decor3 {
     top: 40%;
     right: 10%;
     font-size: 18px;
     animation-delay: 2s;
 }
 
-@keyframes float {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(5deg); }
+.decor4 {
+    bottom: 15%;
+    left: 8%;
+    font-size: 20px;
+    animation-delay: 3s;
 }
 
-/* NAVBAR */
+@keyframes floating {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(7deg);
+    }
+}
+
+/* =========================
+   SPARKLES
+========================= */
+
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 14px;
+    z-index: 9999;
+    animation: sparkleAnimation 1s ease-out forwards;
+}
+
+@keyframes sparkleAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(.5) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.4) translateY(-25px);
+    }
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
 nav {
     position: sticky;
     top: 0;
-    z-index: 100;
-    backdrop-filter: blur(15px);
+    z-index: 1000;
+
     background: rgba(255,255,255,.72);
-    border-bottom: 1px solid rgba(180,140,180,.15);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(190,150,190,.18);
 }
 
 .nav-inner {
     max-width: 1100px;
     margin: auto;
-    padding: 18px 25px;
+    padding: 17px 25px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -82,8 +129,8 @@ nav {
 .logo {
     font-family: 'Playfair Display', serif;
     font-size: 25px;
-    color: #8e6290;
     text-decoration: none;
+    color: #855f83;
 }
 
 .nav-links {
@@ -93,16 +140,19 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #68566b;
+    color: #705f73;
     font-size: 14px;
     transition: .3s;
 }
 
 .nav-links a:hover {
-    color: #ad72a8;
+    color: #b36faa;
 }
 
-/* GENERAL */
+/* =========================
+   SECTION
+========================= */
+
 section {
     max-width: 1100px;
     margin: auto;
@@ -116,85 +166,117 @@ section {
 
 .section-title h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    color: #745575;
+    font-size: 40px;
+    color: #755477;
 }
 
 .section-title p {
     margin-top: 10px;
-    color: #8b7b8d;
+    color: #928194;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
+
 .hero {
     min-height: 90vh;
+
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
     text-align: center;
-    padding: 80px 20px;
+    position: relative;
 }
 
 .hero-content {
     max-width: 760px;
+    animation: fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .profile-wrap {
-    position: relative;
     display: inline-block;
-    margin-bottom: 25px;
+    position: relative;
+    margin-bottom: 30px;
 }
 
 .profile-wrap::before {
     content: "";
+
     position: absolute;
     inset: -12px;
-    border: 1px dashed #cda8cb;
+
+    border: 1px dashed #cda5ca;
     border-radius: 50%;
+
     animation: spin 15s linear infinite;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .profile {
-    width: 145px;
-    height: 145px;
+    width: 150px;
+    height: 150px;
+
     object-fit: cover;
     border-radius: 50%;
+
     border: 6px solid white;
-    box-shadow: 0 15px 40px rgba(130,90,130,.18);
+
+    box-shadow:
+        0 15px 40px rgba(130,90,130,.18),
+        0 0 30px rgba(202,153,201,.2);
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(45px, 8vw, 78px);
-    color: #6e4d70;
+    font-size: clamp(48px, 8vw, 78px);
     line-height: 1.05;
+    color: #684b6a;
 }
 
 .hero h1 span {
-    color: #b878ae;
+    color: #b776ad;
 }
 
 .hero-subtitle {
     margin: 20px auto;
+
     font-family: 'Playfair Display', serif;
     font-style: italic;
+
     font-size: 21px;
-    color: #937595;
+    color: #977699;
 }
 
 .hero-text {
-    max-width: 600px;
+    max-width: 620px;
     margin: auto;
-    line-height: 1.8;
-    color: #766878;
+
+    line-height: 1.9;
+    color: #776b79;
 }
 
 .buttons {
     margin-top: 30px;
+
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -202,59 +284,96 @@ section {
 }
 
 .btn {
-    text-decoration: none;
-    padding: 13px 22px;
+    padding: 13px 23px;
+
     border-radius: 30px;
-    transition: .3s;
+
+    text-decoration: none;
     font-size: 14px;
+
+    transition: .3s;
 }
 
 .btn-main {
-    background: linear-gradient(135deg, #b982b5, #9677bd);
     color: white;
+
+    background: linear-gradient(
+        135deg,
+        #ba83b5,
+        #9578bd
+    );
+
     box-shadow: 0 10px 25px rgba(150,110,170,.2);
 }
 
 .btn-main:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(150,110,170,.3);
 }
 
 .btn-soft {
-    background: white;
     color: #806282;
+    background: white;
+
     border: 1px solid #eadbea;
 }
 
 .btn-soft:hover {
-    transform: translateY(-3px);
-    background: #fff8fd;
+    transform: translateY(-4px);
 }
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
+
 .about-card {
-    background: rgba(255,255,255,.75);
+    background: rgba(255,255,255,.78);
+
     border: 1px solid rgba(190,150,190,.2);
     border-radius: 30px;
-    padding: 40px;
+
+    padding: 42px;
+
     box-shadow: 0 20px 50px rgba(120,80,120,.08);
+
+    position: relative;
+}
+
+.about-card::before {
+    content: "♡";
+
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    font-size: 25px;
+    color: #d49dcc;
 }
 
 .about-card p {
     line-height: 1.9;
-    color: #746676;
+    color: #766877;
+
     margin-bottom: 18px;
 }
 
 .highlight {
     display: inline-block;
-    background: #f4e4f1;
+
+    padding: 7px 13px;
+
+    background: #f4e3f1;
     color: #875d84;
-    padding: 6px 12px;
+
     border-radius: 20px;
+
     font-size: 13px;
 }
 
-/* HOBBIES */
+/* =========================
+   HOBBIES
+========================= */
+
 .hobby-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -262,22 +381,37 @@ section {
 }
 
 .hobby-card {
-    background: rgba(255,255,255,.8);
-    border-radius: 25px;
     overflow: hidden;
+
+    background: rgba(255,255,255,.82);
+
+    border-radius: 25px;
+
     border: 1px solid #eee1ee;
-    transition: .35s;
+
+    transition: .4s;
+
+    box-shadow: 0 10px 30px rgba(110,80,110,.06);
 }
 
 .hobby-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(120,80,130,.12);
+    transform: translateY(-10px) rotate(-1deg);
+
+    box-shadow:
+        0 25px 45px rgba(120,80,130,.14);
 }
 
 .hobby-card img {
     width: 100%;
-    height: 230px;
+    height: 240px;
+
     object-fit: cover;
+
+    transition: .5s;
+}
+
+.hobby-card:hover img {
+    transform: scale(1.06);
 }
 
 .hobby-content {
@@ -286,17 +420,22 @@ section {
 
 .hobby-content h3 {
     font-family: 'Playfair Display', serif;
-    color: #775775;
-    font-size: 23px;
+
+    font-size: 24px;
+    color: #765675;
+
     margin-bottom: 7px;
 }
 
 .hobby-content p {
-    color: #89798a;
     font-size: 14px;
+    color: #89798a;
 }
 
-/* FAVORITES */
+/* =========================
+   FAVORITES
+========================= */
+
 .favorite-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -305,19 +444,25 @@ section {
 
 .favorite {
     background: white;
+
     border-radius: 22px;
+
     padding: 25px;
+
     text-align: center;
+
     border: 1px solid #eee1ee;
-    transition: .3s;
+
+    transition: .35s;
 }
 
 .favorite:hover {
-    transform: scale(1.03);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(120,80,130,.1);
 }
 
 .favorite-icon {
-    font-size: 30px;
+    font-size: 31px;
     margin-bottom: 10px;
 }
 
@@ -327,108 +472,198 @@ section {
 }
 
 .favorite p {
-    font-size: 14px;
     color: #89798a;
+    font-size: 14px;
 }
 
-/* GALLERY */
+/* =========================
+   GALLERY
+========================= */
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 18px;
+    gap: 20px;
 }
 
 .photo-card {
     position: relative;
     overflow: hidden;
-    border-radius: 24px;
+
     background: white;
+
+    border-radius: 24px;
+
     border: 5px solid white;
-    box-shadow: 0 10px 30px rgba(110,80,110,.1);
+
+    box-shadow:
+        0 12px 30px rgba(110,80,110,.1);
+
+    transition: .4s;
+}
+
+.photo-card:hover {
+    transform: translateY(-7px) rotate(.5deg);
+    box-shadow: 0 22px 40px rgba(110,80,110,.15);
 }
 
 .photo-card img {
     width: 100%;
-    height: 270px;
+    height: 275px;
+
     display: block;
+
     object-fit: cover;
+
     transition: .5s;
 }
 
 .photo-card:hover img {
-    transform: scale(1.06);
+    transform: scale(1.07);
 }
 
 .photo-label {
     position: absolute;
+
     bottom: 12px;
     left: 12px;
     right: 12px;
-    padding: 9px 13px;
+
+    padding: 10px 13px;
+
     border-radius: 15px;
-    background: rgba(255,255,255,.85);
+
+    background: rgba(255,255,255,.87);
+
     backdrop-filter: blur(8px);
+
     font-size: 12px;
     color: #725674;
+
+    text-align: center;
 }
 
-/* DEAR VISITOR */
+/* =========================
+   LETTER
+========================= */
+
 .letter {
-    max-width: 750px;
+    max-width: 760px;
     margin: auto;
+
     padding: 45px;
-    background: #fffdfd;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.9),
+            rgba(255,251,254,.9)
+        );
+
     border-radius: 5px 30px 30px 30px;
-    box-shadow: 0 20px 50px rgba(100,70,100,.08);
+
     border-left: 5px solid #c99bc4;
+
+    box-shadow:
+        0 20px 50px rgba(100,70,100,.08);
+
+    position: relative;
+}
+
+.letter::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 30px;
+    top: 25px;
+
+    font-size: 24px;
+    color: #d3a1cf;
 }
 
 .letter h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 30px;
+
+    font-size: 31px;
     color: #765674;
+
     margin-bottom: 22px;
 }
 
 .letter p {
     line-height: 2;
+
     color: #776a78;
+
     margin-bottom: 15px;
 }
 
 .signature {
     font-family: 'Playfair Display', serif;
+
     font-style: italic;
+
     color: #a36a9b;
+
     margin-top: 25px;
 }
 
-/* MUSIC */
+/* =========================
+   MUSIC
+========================= */
+
 .music-box {
-    max-width: 600px;
+    max-width: 650px;
     margin: auto;
+
     text-align: center;
-    padding: 35px;
+
+    padding: 38px;
+
     border-radius: 30px;
-    background: linear-gradient(135deg, #fff, #f8eff9);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8eff9
+        );
+
     border: 1px solid #eadbea;
-    box-shadow: 0 15px 40px rgba(120,80,130,.08);
+
+    box-shadow:
+        0 15px 40px rgba(120,80,130,.08);
 }
 
-.music-box .music-icon {
-    font-size: 40px;
+.music-icon {
+    font-size: 42px;
     margin-bottom: 12px;
+
+    animation: musicFloat 2s ease-in-out infinite;
+}
+
+@keyframes musicFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
 }
 
 .music-box h3 {
     font-family: 'Playfair Display', serif;
+
     color: #765675;
-    font-size: 25px;
+    font-size: 27px;
 }
 
 .music-box p {
     color: #958496;
+
     font-size: 13px;
+
     margin: 7px 0 20px;
 }
 
@@ -436,25 +671,40 @@ audio {
     width: 100%;
 }
 
-/* CONTACT */
+/* =========================
+   ENDING
+========================= */
+
 .contact-box {
     text-align: center;
-    background: rgba(255,255,255,.7);
-    padding: 40px;
+
+    background: rgba(255,255,255,.75);
+
+    padding: 42px;
+
     border-radius: 30px;
+
     border: 1px solid #eadfea;
+
+    box-shadow: 0 15px 35px rgba(120,80,130,.06);
 }
 
 .contact-box p {
     color: #807181;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     text-align: center;
-    padding: 40px 20px;
+
+    padding: 45px 20px;
+
     color: #9b899b;
+
     font-size: 13px;
 }
 
@@ -462,8 +712,30 @@ footer strong {
     color: #866287;
 }
 
-/* RESPONSIVE */
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width: 800px) {
+
     .nav-links {
         display: none;
     }
@@ -472,18 +744,18 @@ footer strong {
         padding: 75px 20px;
     }
 
-    .hobby-grid,
-    .favorite-grid,
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
     .hero {
         min-height: 85vh;
     }
 
     .hero h1 {
         font-size: 48px;
+    }
+
+    .hobby-grid,
+    .favorite-grid,
+    .gallery {
+        grid-template-columns: 1fr;
     }
 
     .about-card,
@@ -500,36 +772,54 @@ footer strong {
 
 <body>
 
-<!-- floating decorations -->
-<div class="decor one">✿</div>
-<div class="decor two">♡</div>
-<div class="decor three">✦</div>
+<!-- DECORATIONS -->
+
+<div class="decor decor1">✿</div>
+<div class="decor decor2">♡</div>
+<div class="decor decor3">✦</div>
+<div class="decor decor4">🌷</div>
+
 
 <!-- NAVBAR -->
+
 <nav>
     <div class="nav-inner">
-        <a href="#home" class="logo">Aurelliee ♡</a>
+
+        <a href="#home" class="logo">
+            Aurelliee ♡
+        </a>
 
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#hobbies">Hobbies</a>
             <a href="#favorites">Favorites</a>
-            <a href="#gallery">Memories</a>
+            <a href="#memories">Memories</a>
             <a href="#letter">Dear Visitor</a>
         </div>
+
     </div>
 </nav>
 
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
+
 <section class="hero" id="home">
+
     <div class="hero-content">
 
         <div class="profile-wrap">
-            <img src="profil.jpg" class="profile" alt="Profile">
+            <img
+                src="profil.jpg"
+                class="profile"
+                alt="Aurel"
+            >
         </div>
 
-        <h1>Hi, I'm <span>Aurel</span> ♡</h1>
+        <h1>
+            Hi, I'm <span>Aurel</span> ♡
+        </h1>
 
         <div class="hero-subtitle">
             welcome to my little corner of the internet
@@ -537,45 +827,74 @@ footer strong {
 
         <p class="hero-text">
             A tiny website filled with little pieces of me,
-            random memories, things I love, and moments
-            I want to keep close. 🌷
+            random memories, things I love,
+            and moments I want to keep close. 🌷
         </p>
 
         <div class="buttons">
-            <a href="#about" class="btn btn-main">Get to know me ♡</a>
-            <a href="#gallery" class="btn btn-soft">See my memories ✦</a>
+
+            <a
+                href="#about"
+                class="btn btn-main"
+            >
+                Get to know me ♡
+            </a>
+
+            <a
+                href="#memories"
+                class="btn btn-soft"
+            >
+                See my memories ✦
+            </a>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- ABOUT -->
-<section id="about">
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about" class="reveal">
 
     <div class="section-title">
-        <h2>Little About Me</h2>
-        <p>a few little things about the girl behind this website ♡</p>
+
+        <h2>
+            Little About Me
+        </h2>
+
+        <p>
+            a few little things about the girl behind this website ♡
+        </p>
+
     </div>
+
 
     <div class="about-card">
 
         <p>
             Haiii! Aku <strong>Aurel</strong> ♡
-            Aku suka belajar hal-hal baru, mencoba berbagai hal
-            kreatif, dan mengabadikan momen-momen kecil yang
-            menurutku berharga.
+            Aku suka belajar hal-hal baru, mencoba berbagai
+            hal kreatif, dan mengabadikan momen-momen kecil
+            yang menurutku berharga.
         </p>
 
         <p>
-            Aku juga seorang pelajar dari
-            <span class="highlight">SMKN 42 Jakarta ♡</span>
+            Aku adalah seorang
+            <span class="highlight">
+                anak 42 ♡
+            </span>
+            dari SMKN 42 Jakarta.
         </p>
 
         <p>
-            Sekarang aku lagi belajar memahami diri sendiri,
-            sekaligus terus belajar dan berkembang dalam
-            pelajaran sekolah.
+            Aku suka menulis, bernyanyi, dan menonton.
+            Sekarang aku juga lagi belajar memahami diri
+            sendiri sekaligus terus belajar dan berkembang
+            dalam pelajaran sekolah.
         </p>
 
         <p>
@@ -585,54 +904,128 @@ footer strong {
         </p>
 
     </div>
+
 </section>
 
 
-<!-- HOBBIES -->
-<section id="hobbies">
+<!-- =========================
+     HOBBIES
+========================= -->
+
+<section id="hobbies" class="reveal">
 
     <div class="section-title">
-        <h2>My Little Hobbies</h2>
-        <p>things I enjoy doing in my little free time ♡</p>
+
+        <h2>
+            My Little Hobbies
+        </h2>
+
+        <p>
+            things I enjoy doing in my little free time ♡
+        </p>
+
     </div>
+
 
     <div class="hobby-grid">
 
-        <div class="hobby-card">
-            <img src="writing.jpg" alt="Writing">
-            <div class="hobby-content">
-                <h3>Writing ✍🏻</h3>
-                <p>Putting little thoughts and feelings into words.</p>
-            </div>
-        </div>
+        <!-- WRITING -->
 
         <div class="hobby-card">
-            <img src="singing.jpg" alt="Singing">
+
+            <img
+                src="nulis.jpeg"
+                alt="Writing"
+            >
+
             <div class="hobby-content">
-                <h3>Singing 🎤</h3>
-                <p>One of the little things that makes me happy.</p>
+
+                <h3>
+                    Writing ✍🏻
+                </h3>
+
+                <p>
+                    Putting little thoughts and feelings
+                    into words.
+                </p>
+
             </div>
+
         </div>
 
+
+        <!-- SINGING -->
+
         <div class="hobby-card">
-            <img src="watching.jpg" alt="Watching">
+
+            <img
+                src="nyanyi.jpeg"
+                alt="Singing"
+            >
+
             <div class="hobby-content">
-                <h3>Watching 🎬</h3>
-                <p>Getting lost in stories, movies, and characters.</p>
+
+                <h3>
+                    Singing 🎤
+                </h3>
+
+                <p>
+                    One of the little things
+                    that makes me happy.
+                </p>
+
             </div>
+
+        </div>
+
+
+        <!-- WATCHING -->
+
+        <div class="hobby-card">
+
+            <img
+                src="nonton.jpeg"
+                alt="Watching"
+            >
+
+            <div class="hobby-content">
+
+                <h3>
+                    Watching 🎬
+                </h3>
+
+                <p>
+                    Getting lost in stories,
+                    movies, and characters.
+                </p>
+
+            </div>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- FAVORITES -->
-<section id="favorites">
+<!-- =========================
+     FAVORITES
+========================= -->
+
+<section id="favorites" class="reveal">
 
     <div class="section-title">
-        <h2>My Little Favorites</h2>
-        <p>some tiny things that feel very me ♡</p>
+
+        <h2>
+            My Little Favorites
+        </h2>
+
+        <p>
+            some tiny things that feel very me ♡
+        </p>
+
     </div>
+
 
     <div class="favorite-grid">
 
@@ -673,96 +1066,178 @@ footer strong {
         </div>
 
     </div>
+
 </section>
 
 
-<!-- GALLERY -->
-<section id="gallery">
+<!-- =========================
+     MEMORIES
+========================= -->
+
+<section id="memories" class="reveal">
 
     <div class="section-title">
-        <h2>Little Memories</h2>
-        <p>random moments I want to keep ♡</p>
+
+        <h2>
+            Little Memories
+        </h2>
+
+        <p>
+            random moments I want to keep ♡
+        </p>
+
     </div>
+
 
     <div class="gallery">
 
-        <!-- FOTO LAMA -->
+        <!-- 7 FOTO LAMA -->
+
         <div class="photo-card">
             <img src="design.jpg" alt="Memory">
-            <div class="photo-label">a little aesthetic moment ♡</div>
+            <div class="photo-label">
+                a little aesthetic moment ♡
+            </div>
         </div>
 
         <div class="photo-card">
             <img src="malam.jpg" alt="Memory">
-            <div class="photo-label">night memories ✦</div>
+            <div class="photo-label">
+                night memories ✦
+            </div>
         </div>
 
         <div class="photo-card">
             <img src="benda.jpg" alt="Memory">
-            <div class="photo-label">little things</div>
+            <div class="photo-label">
+                little things
+            </div>
         </div>
 
         <div class="photo-card">
             <img src="bunga.jpg" alt="Memory">
-            <div class="photo-label">flowers & pretty things 🌷</div>
+            <div class="photo-label">
+                flowers & pretty things 🌷
+            </div>
         </div>
 
         <div class="photo-card">
             <img src="Meja belajar.jpg" alt="Memory">
-            <div class="photo-label">study corner ♡</div>
+            <div class="photo-label">
+                study corner ♡
+            </div>
         </div>
 
         <div class="photo-card">
             <img src="Pemandangan.jpg" alt="Memory">
-            <div class="photo-label">a peaceful view</div>
+            <div class="photo-label">
+                a peaceful view
+            </div>
         </div>
 
-        <!-- FOTO BARU RANDOM / MEMORIES -->
-        <div class="photo-card">
-            <img src="random1.jpg" alt="Memory">
-            <div class="photo-label">just a little memory ♡</div>
-        </div>
+
+        <!-- 6 FOTO MEMORY BARU -->
 
         <div class="photo-card">
-            <img src="random2.jpg" alt="Memory">
-            <div class="photo-label">good times ✦</div>
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.11.jpeg"
+                alt="Memory 1"
+            >
+
+            <div class="photo-label">
+                memory no. 01 ♡
+            </div>
         </div>
 
-        <div class="photo-card">
-            <img src="random3.jpg" alt="Memory">
-            <div class="photo-label">a moment worth keeping</div>
-        </div>
 
         <div class="photo-card">
-            <img src="random4.jpg" alt="Memory">
-            <div class="photo-label">little memories</div>
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.12.jpeg"
+                alt="Memory 2"
+            >
+
+            <div class="photo-label">
+                memory no. 02 ✦
+            </div>
         </div>
 
-        <div class="photo-card">
-            <img src="random5.jpg" alt="Memory">
-            <div class="photo-label">with my people ♡</div>
-        </div>
 
         <div class="photo-card">
-            <img src="random6.jpg" alt="Memory">
-            <div class="photo-label">another tiny moment</div>
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.12 (1).jpeg"
+                alt="Memory 3"
+            >
+
+            <div class="photo-label">
+                memory no. 03 ♡
+            </div>
+        </div>
+
+
+        <div class="photo-card">
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.12 (2).jpeg"
+                alt="Memory 4"
+            >
+
+            <div class="photo-label">
+                memory no. 04 🌷
+            </div>
+        </div>
+
+
+        <div class="photo-card">
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.13.jpeg"
+                alt="Memory 5"
+            >
+
+            <div class="photo-label">
+                memory no. 05 ✨
+            </div>
+        </div>
+
+
+        <div class="photo-card">
+            <img
+                src="WhatsApp Image 2026-09-06 at 19.40.13 (1).jpeg"
+                alt="Memory 6"
+            >
+
+            <div class="photo-label">
+                memory no. 06 ♡
+            </div>
         </div>
 
     </div>
+
 </section>
 
 
-<!-- DEAR VISITOR -->
-<section id="letter">
+<!-- =========================
+     DEAR VISITOR
+========================= -->
+
+<section id="letter" class="reveal">
 
     <div class="section-title">
-        <h2>Dear Visitor ♡</h2>
-        <p>a little note from me to you</p>
+
+        <h2>
+            Dear Visitor ♡
+        </h2>
+
+        <p>
+            a little note from me to you
+        </p>
+
     </div>
+
 
     <div class="letter">
 
-        <h3>Dear you,</h3>
+        <h3>
+            Dear you,
+        </h3>
 
         <p>
             Thank you for stopping by and spending a little
@@ -788,32 +1263,58 @@ footer strong {
         </p>
 
         <p class="signature">
-            with love & little sparkles,<br>
+            with little sparkles,<br>
             Aurel ♡
         </p>
 
     </div>
+
 </section>
 
 
-<!-- MUSIC -->
-<section id="music">
+<!-- =========================
+     MUSIC
+========================= -->
+
+<section id="music" class="reveal">
 
     <div class="section-title">
-        <h2>Now Playing 🎧</h2>
-        <p>a song for this little corner</p>
+
+        <h2>
+            Now Playing 🎧
+        </h2>
+
+        <p>
+            a song for this little corner
+        </p>
+
     </div>
+
 
     <div class="music-box">
 
-        <div class="music-icon">🎶</div>
+        <div class="music-icon">
+            🎶
+        </div>
 
-        <h3>Kiss Me</h3>
-        <p>Sixpence None the Richer</p>
+        <h3>
+            Kiss Me
+        </h3>
+
+        <p>
+            Sixpence None the Richer
+        </p>
 
         <audio controls>
-            <source src="kiss-me.mp3" type="audio/mpeg">
-            Your browser does not support the audio player.
+
+            <source
+                src="Sync_Tunes_mp3.mp3"
+                type="audio/mpeg"
+            >
+
+            Your browser does not support
+            the audio player.
+
         </audio>
 
     </div>
@@ -821,19 +1322,32 @@ footer strong {
 </section>
 
 
-<!-- CONTACT -->
-<section id="contact">
+<!-- =========================
+     END
+========================= -->
+
+<section id="contact" class="reveal">
 
     <div class="section-title">
-        <h2>Thank You For Visiting ♡</h2>
-        <p>that's all from my little corner</p>
+
+        <h2>
+            Thank You For Visiting ♡
+        </h2>
+
+        <p>
+            that's all from my little corner
+        </p>
+
     </div>
+
 
     <div class="contact-box">
 
         <p>
-            I hope you enjoyed looking around my tiny website.
-            <br>
+            I hope you enjoyed looking around
+            my tiny website. 🌷
+            <br><br>
+
             See you somewhere on the internet! ✦
         </p>
 
@@ -843,12 +1357,154 @@ footer strong {
 
 
 <!-- FOOTER -->
+
 <footer>
-    Made with ♡ by <strong>Aurel</strong>
+
+    Made with ♡ by
+    <strong>Aurel</strong>
+
     <br><br>
+
     © 2026 Aurelliee
+
 </footer>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+    document.querySelectorAll('.reveal');
+
+const revealObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('show');
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================
+   CLICK SPARKLE
+========================= */
+
+document.addEventListener(
+    'click',
+    function(event) {
+
+        const sparkle =
+            document.createElement('div');
+
+        sparkle.className = 'sparkle';
+
+        sparkle.innerHTML =
+            ['✦', '✧', '♡', '✿']
+            [Math.floor(Math.random() * 4)];
+
+        sparkle.style.left =
+            event.clientX + 'px';
+
+        sparkle.style.top =
+            event.clientY + 'px';
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+
+            sparkle.remove();
+
+        }, 1000);
+
+    }
+);
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHeart() {
+
+    const heart =
+        document.createElement('div');
+
+    heart.innerHTML =
+        ['♡', '♥', '✦']
+        [Math.floor(Math.random() * 3)];
+
+    heart.style.position = 'fixed';
+
+    heart.style.left =
+        Math.random() * 100 + 'vw';
+
+    heart.style.bottom = '-20px';
+
+    heart.style.fontSize =
+        (12 + Math.random() * 12) + 'px';
+
+    heart.style.opacity =
+        0.4 + Math.random() * .4;
+
+    heart.style.pointerEvents =
+        'none';
+
+    heart.style.zIndex = '999';
+
+    heart.style.transition =
+        'transform 5s linear, opacity 5s linear';
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.style.transform =
+            `translateY(-110vh) rotate(${Math.random() * 180}deg)`;
+
+        heart.style.opacity = '0';
+
+    }, 100);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 5200);
+
+}
+
+
+setInterval(createHeart, 1800);
+
+</script>
 
 </body>
 </html>
